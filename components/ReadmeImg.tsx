@@ -10,7 +10,12 @@ const ReadmeImg = ({ width, height, children }) => {
       xmlns="http://www.w3.org/2000/svg"
     >
       <foreignObject width={width} height={height}>
-        <div {...{ xmlns: "http://www.w3.org/1999/xhtml" }}>
+        <div 
+          {...{ xmlns: "http://www.w3.org/1999/xhtml" }}
+          style={{
+            backgroundColor: "#e1e4e8",
+            borderRadius: 5
+          }}>
           <style>{`
               * {
                 margin: 0;

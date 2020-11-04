@@ -86,7 +86,8 @@ export const Track: React.FC<Props> = ({
           display: "flex",
           alignItems: "center",
           paddingTop: 8,
-          paddingLeft: 4,
+          paddingBottom: 8,
+          paddingLeft: 4
         }}
       >
         <img id="cover" src={cover ?? null} width="48" height="48" />
@@ -96,7 +97,7 @@ export const Track: React.FC<Props> = ({
             flex: 1,
             flexDirection: "column",
             marginTop: -4,
-            marginLeft: 8,
+            marginLeft: 8
           }}
         >
           <Text id="track" weight="bold">

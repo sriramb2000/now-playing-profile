@@ -131,6 +131,7 @@ export const Player: React.FC<Props> = ({
           display: "flex",
           alignItems: "center",
           paddingTop: 8,
+          paddingBottom: 8,
           paddingLeft: 4,
         }}
       >
