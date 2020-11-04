@@ -116,5 +116,5 @@ const server = http.createServer(async function (req, res) {
 server.listen(SERVER_PORT);
 
 open(
-  `https://accounts.spotify.com/authorize?client_id=${configuration["SPOTIFY_CLIENT_ID"]}&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A${SERVER_PORT}%2Fcallback&scope=user-read-playback-state%20user-read-currently-playing`
+  `https://accounts.spotify.com/authorize?client_id=${configuration["SPOTIFY_CLIENT_ID"]}&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A${SERVER_PORT}%2Fcallback&scope=user-read-playback-state%20user-read-currently-playing%20user-library-read`
 );
