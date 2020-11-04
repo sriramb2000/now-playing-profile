@@ -6,6 +6,7 @@ const fetch = require("node-fetch");
 const querystring = require("querystring");
 const http = require("http");
 const open = require("open");
+const { query } = require("faunadb");
 
 if (fs.existsSync(".env")) {
   console.log("Using .env file to supply config environment variables");
@@ -115,6 +116,17 @@ const server = http.createServer(async function (req, res) {
 
 server.listen(SERVER_PORT);
 
+const SPOTIFY_SCOPES = [
+  "user-read-playback-state",
+  "user-read-currently-playing",
+  "user-library-read",
+  "user-top-read",
+];
+
 open(
-  `https://accounts.spotify.com/authorize?client_id=${configuration["SPOTIFY_CLIENT_ID"]}&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A${SERVER_PORT}%2Fcallback&scope=user-read-playback-state%20user-read-currently-playing%20user-library-read`
+  `https://accounts.spotify.com/authorize?client_id=${
+    configuration["SPOTIFY_CLIENT_ID"]
+  }&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A${SERVER_PORT}%2Fcallback&scope=${SPOTIFY_SCOPES.join(
+    "%20"
+  )}`
 );
