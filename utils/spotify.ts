@@ -44,3 +44,25 @@ export async function nowPlaying() {
     return data;
   }
 }
+
+const SAVED_TRACKS_ENDPOINT = `https://api.spotify.com/v1/me/tracks`;
+export async function lastSaved() {
+  const Authorization = await getAuthorizationToken();
+  const body = stringify({
+    limit: 1,
+    offset: 0
+  });
+  const response = await fetch(`${SAVED_TRACKS_ENDPOINT}?${body}`, {
+    headers: {
+      Authorization,
+    }
+  });
+  const { status } = response;
+  if (status === 204) {
+    return {};
+  } else if (status === 200) {
+    const data = await response.json();
+    data.item = (data.items && data.items[0] && data.items[0].track) || {};
+    return data;
+  }
+}
