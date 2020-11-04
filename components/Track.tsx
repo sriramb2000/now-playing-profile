@@ -6,12 +6,14 @@ export interface Props {
   cover?: string;
   track: string;
   artist: string;
+  url: string;
 }
 
 export const Track: React.FC<Props> = ({
   cover,
   track,
   artist,
+  url
 }) => {
   return (
     <ReadmeImg width="256" height="64">
@@ -20,6 +22,10 @@ export const Track: React.FC<Props> = ({
             .paused { 
               animation-play-state: paused !important;
               background: #e1e4e8 !important;
+            }
+
+            a, u {
+                text-decoration: none;
             }
 
             img:not([src]) {
@@ -81,33 +87,35 @@ export const Track: React.FC<Props> = ({
             }
         `}
       </style>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          paddingTop: 8,
-          paddingBottom: 8,
-          paddingLeft: 4
-        }}
-      >
-        <img id="cover" src={cover ?? null} width="48" height="48" />
+      <a href={url}>
         <div
-          style={{
+            style={{
             display: "flex",
-            flex: 1,
-            flexDirection: "column",
-            marginTop: -4,
-            marginLeft: 8
-          }}
+            alignItems: "center",
+            paddingTop: 8,
+            paddingBottom: 8,
+            paddingLeft: 4
+            }}
         >
-          <Text id="track" weight="bold">
-            {`${track ?? ""} `.trim()}
-          </Text>
-          <Text id="artist" color={!track ? "gray" : undefined}>
-            {artist || "Nothing playing..."}
-          </Text>
+            <img id="cover" src={cover ?? null} width="48" height="48" />
+            <div
+            style={{
+                display: "flex",
+                flex: 1,
+                flexDirection: "column",
+                marginTop: -4,
+                marginLeft: 8
+            }}
+            >
+            <Text id="track" weight="bold">
+                {`${track ?? ""} `.trim()}
+            </Text>
+            <Text id="artist" color={!track ? "gray" : undefined}>
+                {artist || "Nothing playing..."}
+            </Text>
+            </div>
         </div>
-      </div>
+      </a>
     </ReadmeImg>
   );
 };

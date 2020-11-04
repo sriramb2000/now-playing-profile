@@ -6,12 +6,14 @@ export interface Props {
   cover?: string;
   artist: string;
   genres: string;
+  url: string;
 }
 
 export const Artist: React.FC<Props> = ({
   cover,
   artist,
-  genres
+  genres,
+  url
 }) => {
   return (
     <ReadmeImg width="256" height="64">
@@ -20,6 +22,10 @@ export const Artist: React.FC<Props> = ({
             .paused { 
               animation-play-state: paused !important;
               background: #e1e4e8 !important;
+            }
+
+            a, u {
+                text-decoration: none;
             }
 
             img:not([src]) {
@@ -82,33 +88,36 @@ export const Artist: React.FC<Props> = ({
             }
         `}
       </style>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          paddingTop: 8,
-          paddingBottom: 8,
-          paddingLeft: 4
-        }}
-      >
-        <img id="cover" src={cover ?? null} width="48" height="48" />
+      <a href={url}>
         <div
-          style={{
+            style={{
             display: "flex",
-            flex: 1,
-            flexDirection: "column",
-            marginTop: -4,
-            marginLeft: 8
-          }}
+            alignItems: "center",
+            paddingTop: 8,
+            paddingBottom: 8,
+            paddingLeft: 4
+            }}
         >
-          <Text id="artist" weight="bold">
-            {artist || "Nothing playing..."}
-          </Text>
-          <Text id="genres" color={!genres ? "gray" : undefined}>
-            {genres || "vibes"}
-          </Text>
+            <img id="cover" src={cover ?? null} width="48" height="48" />
+            <div
+            style={{
+                display: "flex",
+                flex: 1,
+                flexDirection: "column",
+                marginTop: -4,
+                marginLeft: 8
+            }}
+            >
+            <Text id="artist" weight="bold">
+                {artist || "Nothing playing..."}
+            </Text>
+            <Text id="genres" color={!genres ? "gray" : undefined}>
+                {genres || "vibes"}
+            </Text>
+            </div>
         </div>
-      </div>
+      </a>
+      
     </ReadmeImg>
   );
 };
