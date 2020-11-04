@@ -4,6 +4,9 @@
   "version": "1.0.0",
   "description": "Github profile",
   "main": "index.js",
+  "scripts": {
+    "local": "vercel dev --confirm --listen 127.0.0.1:3000"
+  },
   "dependencies": {
     "faunadb": "^2.14.2",
     "isomorphic-unfetch": "^3.0.0",
