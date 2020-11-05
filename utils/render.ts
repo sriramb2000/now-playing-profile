@@ -44,11 +44,12 @@ export async function renderArtist(item) {
     );
 }
 
+const MY_PROFILE_URL = "https://open.spotify.com/user/22svycycn5pdjvrg4qn4ojczy?si=IgVhxuQdTqa8AJwN4BrCuQ";
 export async function renderNowPlaying(item, isPlaying, progress) {
     const { duration_ms: duration, name: track } = item;
     const { images = [] } = item.album || {};
-    const { external_urls } = item;
-    const { spotify: url } = external_urls;
+    const { external_urls = {} } = item;
+    const { spotify = MY_PROFILE_URL } = external_urls;
 
     const cover = images[images.length - 1]?.url;
     let coverImg = null;
@@ -59,6 +60,6 @@ export async function renderNowPlaying(item, isPlaying, progress) {
 
     const artist = (item.artists || []).map(({ name }) => name).join(", ");
     return renderToString(
-        Player({ cover: coverImg, artist, track, isPlaying, progress, duration, url })
+        Player({ cover: coverImg, artist, track, isPlaying, progress, duration, url: spotify })
     );
 }
